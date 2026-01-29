@@ -1,215 +1,460 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Manufacturing Unit Address</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manufacturing Unit Address</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    html, body {
-      height: 100%;
-      font-family: 'Segoe UI', sans-serif;
-    }
+      html,
+      body {
+        height: 100%;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
 
-    body {
-      display: flex;
-      flex-direction: column;
-      background: #fff;
-      color: #333;
-    }
+      body {
+        display: flex;
+        flex-direction: column;
+        background: #f8f9fa;
+        color: #333;
+      }
 
-    header {
-      background: linear-gradient(to right, #c9f3e1, #9acdf1);
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+      header {
+        background: linear-gradient(to right, #c9f3e1, #9acdf1);
+        padding: 25px 30px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
 
-    header img {
-      height: 50px;
-      margin-right: 15px;
-    }
+      header img {
+        height: 60px;
+        margin-right: 20px;
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
+      }
 
-    header h1 {
-      font-size: 22px;
-      margin: 10px 0;
-      color: #067d40;
-      flex: 1;
-    }
+      main {
+        flex: 1;
+        padding: 40px 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
 
-    main {
-      flex: 1;
-      padding: 20px;
-    }
+      h2 {
+        font-size: 28px;
+        margin-bottom: 25px;
+        color: #2c3e50;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        padding-bottom: 12px;
+      }
 
-    h2 {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
+      h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(to right, #c9f3e1, #9acdf1);
+        border-radius: 2px;
+      }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
+      .important-note {
+        background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+        border-left: 5px solid #ff0000;
+        border-radius: 8px;
+        color: #b30000;
+        padding: 20px 25px;
+        margin-bottom: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        box-shadow: 0 3px 10px rgba(255, 0, 0, 0.1);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
 
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: left;
-      vertical-align: top;
-    }
+      .important-note:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(255, 0, 0, 0.15);
+      }
 
-    th {
-      background: #e2edfd;
-      font-weight: 600;
-    }
+      .important-note strong {
+        color: #990000;
+        font-weight: 700;
+      }
 
-    td strong {
-      font-weight: bold;
-    }
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        font-size: 14px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        background: white;
+      }
 
-    footer {
-  padding: 15px 20px;
-  background-color: #f5f5f5;
-  border-top: 1px solid #ccc;
-  font-size: 14px;
-}
+      th,
+      td {
+        padding: 18px 15px;
+        text-align: left;
+        vertical-align: top;
+      }
 
-.footer-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-}
+      th {
+        background: linear-gradient(to right, #c9f3e1, #9acdf1);
+        color: #2c3e50;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 13px;
+        border-bottom: 2px solid #8ac3e1;
+      }
 
-.footer-left, .footer-center, .footer-right {
-  flex: 1;
-}
+      tbody tr {
+        transition: all 0.3s ease;
+        border-bottom: 1px solid #e9ecef;
+      }
 
-.footer-bis {
-  font-size: 13px;
-  color: #d20074;
-}
+      tbody tr:hover {
+        background: linear-gradient(to right, #f0fcf8, #f0f8fd);
+        transform: scale(1.005);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      }
 
-.footer-bis strong {
-  display: block;
-  color: black;
-  margin-top: 5px;
-}
+      tbody tr:last-child {
+        border-bottom: none;
+      }
 
-.footer-links a {
-  color: #333;
-  text-decoration: none;
-  margin: 0 10px;
-}
+      td {
+        border-right: 1px solid #e9ecef;
+      }
 
-.bis-flex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
+      td:last-child {
+        border-right: none;
+      }
 
-.isi-logo {
-  height: 40px;
-}
+      td:first-child {
+        font-weight: 700;
+        color: #6eb5d1;
+        font-size: 16px;
+      }
 
-.bis-text {
-  text-align: left;
-  line-height: 1.4;
-}
+      td:nth-child(2) {
+        font-weight: 700;
+        color: #5aa8c7;
+        font-size: 15px;
+      }
 
-.bis-number {
-  font-weight: bold;
-  color: #d20074;
-}
+      td strong {
+        font-weight: 700;
+        color: #2c3e50;
+        display: block;
+        margin-bottom: 8px;
+        font-size: 15px;
+      }
 
-@media (min-width: 600px) {
-  .footer-container {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-    align-items: center;
-  }
+      footer {
+        padding: 25px 30px;
+        background-color: #f5f5f5;
+        border-top: 3px solid #9acdf1;
+        font-size: 14px;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+      }
 
-  .footer-center {
-    text-align: center;
-  }
-}
+      .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
 
+      .footer-bis {
+        font-size: 13px;
+        color: #d20074;
+      }
 
-  </style>
-</head>
-<body>
+      .footer-links a {
+        color: #333;
+        text-decoration: none;
+        margin: 0 12px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        position: relative;
+      }
 
-  <header>
-    <img src="https://i.ibb.co/wrSPZ2L2/feeds.png" alt="FeedBazaar Logo" />
-  </header>
+      .footer-links a:hover {
+        color: #5aa8c7;
+      }
 
-  <main>
-    <h2>Manufacturing Unit Address</h2>
+      .footer-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(to right, #c9f3e1, #9acdf1);
+        transition: width 0.3s ease;
+      }
 
-    <table>
-      <thead>
-        <tr>
-          <th>Serial no:</th>
-          <th>Code</th>
-          <th>Address</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>EM</td>
-          <td>
-            <strong>Evergreen Mrudula Agro -Vet Pvt Ltd.</strong><br/>
-            Gat No :- 870. Dhadgewadi Phata. Ranjangaon Mashid.<br/>
-            Ta- Parner. Dist:- Ahmednagar 414302<br/>
-            GSTIN/UIN: 27AADCE9490J1Z4<br/>
-            State Name: Maharashtra, Code: 27<br/>
-            CIN: U15331PN2015PTC155008
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </main>
+      .footer-links a:hover::after {
+        width: 100%;
+      }
 
-<footer>
-  <div class="footer-container">
-    <div class="footer-left">© 2025 All Rights Reserved</div>
+      .bis-flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        border: 2px solid #ffe5f0;
+        box-shadow: 0 2px 8px rgba(210, 0, 116, 0.1);
+      }
 
-    <div class="footer-center footer-bis">
-      <div class="bis-flex">
-        <img src="isi-mark-service-500x500.png" alt="ISI Mark" class="isi-logo" />
-        <div class="bis-text">
-          IS: 2052<br/>
-          <span class="bis-number">BIS - CM/L No. 7500247812</span><br/>
-          Visit us at: <a href="https://www.bis.gov.in" target="_blank">www.bis.gov.in</a>
+      .isi-logo {
+        height: 50px;
+        background: white;
+        padding: 5px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .bis-text {
+        text-align: left;
+        line-height: 1.6;
+      }
+
+      .bis-text a {
+        color: #5aa8c7;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+
+      .bis-text a:hover {
+        color: #d20074;
+        text-decoration: underline;
+      }
+
+      .bis-number {
+        font-weight: bold;
+        color: #d20074;
+      }
+
+      /* Responsive Design */
+      @media (min-width: 768px) {
+        .footer-container {
+          flex-direction: row;
+          justify-content: space-between;
+          text-align: left;
+          align-items: center;
+        }
+
+        .footer-center {
+          text-align: center;
+        }
+
+        h2 {
+          font-size: 32px;
+        }
+
+        table {
+          font-size: 15px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        main {
+          padding: 20px 15px;
+        }
+
+        h2 {
+          font-size: 24px;
+        }
+
+        table {
+          font-size: 13px;
+        }
+
+        th,
+        td {
+          padding: 12px 10px;
+        }
+
+        header {
+          padding: 20px;
+        }
+
+        header img {
+          height: 50px;
+        }
+
+        .bis-flex {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .bis-text {
+          text-align: center;
+        }
+      }
+
+      /* Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      main {
+        animation: fadeIn 0.6s ease-out;
+      }
+
+      /* Print Styles */
+      @media print {
+        body {
+          background: white;
+        }
+
+        header {
+          box-shadow: none;
+        }
+
+        table {
+          box-shadow: none;
+        }
+
+        .important-note {
+          box-shadow: none;
+        }
+
+        tbody tr:hover {
+          background: none;
+          transform: none;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="https://i.ibb.co/wrSPZ2L2/feeds.png" alt="FeedBazaar Logo" />
+    </header>
+
+    <main>
+      <h2>Manufacturing Unit Address</h2>
+
+      <div class="important-note">
+        NOTE: In the manufacturing unit code (for example
+        <strong>ABC-X</strong>), the first three letters represent the company
+        code and the last letter represents the specific plant code. A single
+        company may operate multiple manufacturing plants.
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Serial no:</th>
+            <th>Code</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>EM</td>
+            <td>
+              <strong>Evergreen Mrudula Agro -Vet Pvt Ltd.</strong><br />
+              Gat No :- 870. Dhadgewadi Phata. Ranjangaon Mashid.<br />
+              Ta- Parner. Dist:- Ahmednagar 414302<br />
+              GSTIN/UIN: 27AADCE9490J1Z4<br />
+              State Name: Maharashtra, Code: 27<br />
+              CIN: U15331PN2015PTC155008
+            </td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>HNL-M</td>
+            <td>
+              <strong>HERITAGE NUTRIVET LIMITED</strong><br /><br />
+              PLOT NO 12/6, APIIC INDUSTRIAL PARK, MALLAVALLI (V), BAPULAPADU
+              (M),<br />
+              MALLAVALLI, DISTRICT: KRISHNA – 521111, Andhra Pradesh, India<br />
+              GST No: 37AACCH1365A1Z2<br />
+              CIN No: U15400TG2008PLC062054<br />
+              BIS License No: CM/L- 6600065409
+            </td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td>HNL-H</td>
+            <td>
+              <strong>HERITAGE NUTRIVET LIMITED</strong><br /><br />
+              APIIC COLONY, 41, GOLLAPURAM, HINDUPUR,<br />
+              Ananthapuramu, Andhra Pradesh – 515211<br />
+              GST No: 37AACCH1365A1Z2<br />
+              CIN No: U15400TG2008PLC062054<br />
+              BIS License No: CM/L- 6600065409
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <div>© 2025 All Rights Reserved</div>
+
+        <div class="footer-bis">
+          <div class="bis-flex">
+            <img
+              src="./isi-mark-service-500x500.png"
+              alt="ISI Mark"
+              class="isi-logo"
+            />
+            <div class="bis-text">
+              IS: 2052<br />
+              <span class="bis-number">BIS - CM/L No. 7500247812</span><br />
+              Visit us at:
+              <a href="https://www.bis.gov.in/" target="_blank"
+                >www.bis.gov.in</a
+              >
+            </div>
+          </div>
+          <strong>MARKETED BY:<br />FB AGRI VET PRIVATE LIMITED</strong>
+        </div>
+
+        <div class="footer-links">
+          <a href="#">Terms and conditions</a> |
+          <a href="#">Privacy policy</a> |
+          <a href="#">Refunds</a>
         </div>
       </div>
-      <strong>MARKETED BY:<br/>FB AGRI VET PRIVATE LIMITED</strong>
-    </div>
-
-    <div class="footer-right footer-links">
-      <a href="#">Terms and conditions</a> |
-      <a href="#">Privacy policy</a> |
-      <a href="#">Refunds</a>
-    </div>
-  </div>
-</footer>
-
-
-
-
-
-</body>
+    </footer>
+  </body>
 </html>
